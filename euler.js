@@ -265,18 +265,19 @@ var euler = ( function () {
             [ 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48]];
             var RMAX = 20, CMAX = 20;
             
-            var directions = [[1, 0] ,[1, 1], [0, 1]];
+            var directions = [[1, 0] ,[1, 1], [0, 1], [0, -1]];
             
             var radd = 1, cadd = 0;
-            var calc_prod = function (arr, row, column,  depth) {
+            var calc_prod = function (arr, row, column, radd, cadd, depth) {
+              console.log("Row:", row, " Column:",column, " cadd:", cadd);
               if (row >= RMAX || column >= CMAX || row < 0 || column < 0 || depth === 0) {
                 return 1;
               }
               console.log(arr[row][column]);
-              return arr[row][column] * calc_prod(arr, row + radd, column + cadd, depth -1);  
+              return arr[row][column] * calc_prod(arr, row + radd, column + cadd, radd, cadd, depth -1);  
             };
             
-            console.log(calc_prod(data, 0, 0, 4));
+            console.log(calc_prod(data, 0, 0, radd, cadd, 4));
             //console.log(data, RMAX, " ", CMAX);
         },
         problem14: function () {
